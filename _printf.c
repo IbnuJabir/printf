@@ -106,6 +106,9 @@ int function_selector(va_list args, char f_selector)
 			s = va_arg(args, char *);
 			count += rot_13(s);
 			break;
+		case 'b':
+			count += print_binary(va_arg(args, unsigned int));
+			break;
 		default:
 			count += _putchar('%');
 			count += _putchar(f_selector);
