@@ -81,42 +81,44 @@ int print_str(char *str)
 int function_selector(va_list args, char f_selector)
 {
 	int count = 0;
-	char *s = NULL;
+	unsigned int num;
+	char *s;
 
-	switch (f_selector)
+	if (f_selector == 'c')
+		count += _putchar(va_arg(args, int));
+	else if (f_selector == 's')
 	{
-		case 'c':
-			count += _putchar(va_arg(args, int));
-			break;
-		case 's':
-			s = va_arg(args, char *);
-			if (s != NULL)
-				count += print_str(s);
-			else
-				count += print_str("(nil)");
-			break;
-		case 'd':
-		case 'i':
-			count += print_number(va_arg(args, int));
-			break;
-		case '%':
-			count += _putchar('%');
-			break;
-		case 'R':
-			s = va_arg(args, char *);
-			count += rot_13(s);
-			break;
-		case 'b':
-			count += print_binary(va_arg(args, unsigned int));
-			break;
-		default:
-			count += _putchar('%');
-			count += _putchar(f_selector);
-			break;
+		s = va_arg(args, char *);
+		if (s != NULL)
+			count += print_str(s);
+		else
+			count += print_str("(nil)");
 	}
+	else if (f_selector == 'd' || f_selector == 'i')
+		count += print_number(va_arg(args, int));
+	else if (f_selector == 'u')
+		count += print_unsign(va_arg(args, unsigned int));
+	else if (f_selector == 'o')
+		count += print_octal(va_arg(args, unsigned int));
+	else if (f_selector == 'x' || f_selector == 'X')
+	{
+		num = va_arg(args, unsigned int);
+		count += print_hex(num, (f_selector == 'X') ? 1 : 0);
+	}
+	else if (f_selector == '%')
+		count += _putchar('%');
+	else if (f_selector == 'R')
+		count += rot_13(va_arg(args, char *));
+	else if (f_selector == 'b')
+		count += print_binary(va_arg(args, unsigned int));
+	else
+	{
+		count += _putchar('%');
+		count += _putchar(f_selector);
+	}
+
 	return (count);
 }
-
 /**
  * _printf - this is a custom printf function that writes characters on
  * the standard output
