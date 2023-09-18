@@ -3,17 +3,18 @@
  * print_binary - Prints the binary representation of an unsigned integer.
  * @num: The unsigned integer to be printed.
  *
- * Returns: The number of characters printed.
+ * Returns: The number of characters printed
  */
-unsigned int print_binary(unsigned int num)
+int print_binary(unsigned int num)
 {
-	unsigned int count = 0;
-	unsigned int bit = 1 << (sizeof(num) * 8 - 1);
+	int count = 0;
+	int num_bits = sizeof(num) * 8;
+	unsigned int bit = 1U << (num_bits - 1);
 	int has_zeros = 1;
 
-	for (; bit > 0; bit >>= 1)
+	for (int i = 0; i < num_bits; i++)
 	{
-		if (num & bit)
+		if ((num & bit) != 0)
 		{
 			has_zeros = 0;
 			putchar('1');
@@ -24,6 +25,8 @@ unsigned int print_binary(unsigned int num)
 			putchar('0');
 			count++;
 		}
+
+		bit >>= 1;
 	}
 
 	return (count);
