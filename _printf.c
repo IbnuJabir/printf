@@ -71,6 +71,9 @@ int function_selector(va_list args, char f_selector)
 		case '%':
 			count += _putchar('%');
 			break;
+		case 'u':
+			count += print_number(va_arg(args, unsigned int));
+			break;
 		default:
 			count += _putchar('%');
 			count += _putchar(f_selector);
