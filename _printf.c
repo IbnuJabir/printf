@@ -104,6 +104,8 @@ int function_selector(va_list args, char f_selector)
 		case 'R':
 			s = va_arg(args, char *);
 			count += rot13(s);
+		case 'u':
+			count += print_number(va_arg(args, unsigned int));
 			break;
 		default:
 			count += _putchar('%');
