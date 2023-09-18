@@ -6,25 +6,25 @@
  */
 unsigned int print_binary(unsigned int num)
 {
+	int i = 0, j;
+	int bit[32];
 	unsigned int count = 0;
-	unsigned int bit = 0;
-	int has_zeros = 1;
 
-	bit = 1 << (sizeof(num) * 8 - 1);
-	for (; bit > 0; bit >>= 1)
+	if (num == 0)
 	{
-		if (num & bit)
-		{
-			has_zeros = 0;
-			putchar('1');
-			count++;
-		}
-		else if (!has_zeros || bit == 1)
-		{
-			putchar('0');
-			count++;
-		}
+		count += _putchar('0' + num);
+		return (count);
+	}
+	while (num > 0)
+	{
+		bit[i] = num % 2;
+		num = num / 2;
+		i++;
 	}
 
+	for (j = i - 1; j >= 0; j--)
+	{
+		count += _putchar('0' + bit[j]);
+	}
 	return (count);
 }
