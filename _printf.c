@@ -20,11 +20,10 @@ int print_number(int n)
 	temp /= 10;
 
 	if (temp != 0)
-	print_number(temp);
+		count += print_number(temp);
 
 	count += _putchar((unsigned int) n % 10 + '0');
 	return (count);
-
 }
 /**
  * print_str - prints string to the stdout
@@ -68,6 +67,9 @@ int function_selector(va_list args, char f_selector)
 		case 'd':
 		case 'i':
 			count += print_number(va_arg(args, int));
+			break;
+		case '%':
+			count += _putchar('%');
 			break;
 		default:
 			count += _putchar('%');
