@@ -10,21 +10,11 @@ int print_str(char *str)
 
 	while (str[i] != '\0')
 	{
-		write(1, &str[i], 1);
+		_putchar(str[i]);
 		i++;
 	}
 	return (i);
 }
-/**
- * print_char - prints one character
- * @c: character
- * Return: returns 1 (size of character)
- */
-int print_char(char c)
-{
-	return (write(1, &c, 1));
-}
-
 /**
  * function_selector - matches format specifier with the handler function
  * @args: va_list object with the variable arguments
@@ -34,23 +24,23 @@ int print_char(char c)
 int function_selector(va_list args, char f_selector)
 {
 	int count = 0;
-	char *s;
+	char *s = NULL;
 
 	switch (f_selector)
 	{
 		case 'c':
-			print_char(va_arg(args, int));
+			count += _putchar(va_arg(args, int));
 			break;
 		case 's':
 			s = va_arg(args, char *);
 			if (s != NULL)
-				count = print_str(s);
+				count += print_str(s);
 			else
-				count = print_str("(nil)");
+				count += print_str("(nil)");
 			break;
 		default:
-			count = print_char('%');
-			count += print_char(f_selector);
+			count += _putchar('%');
+			count += _putchar(f_selector);
 			break;
 	}
 	return (count);
@@ -74,7 +64,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			count += print_char(*format);
+			count += _putchar(*format);
 		}
 		else
 		{
