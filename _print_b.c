@@ -2,9 +2,10 @@
 /**
  * print_binary - Prints the binary representation of an unsigned integer.
  * @num: The unsigned integer to be printed.
+ *
  * Return: The number of characters printed.
  */
-unsigned int print_binary(unsigned int num)
+int print_binary(unsigned int num)
 {
 	int i = 0, j;
 	int bit[32];

@@ -7,6 +7,6 @@
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-unsigned int print_binary(unsigned int num);
+int print_binary(unsigned int num);
 
 #endif
