@@ -127,6 +127,8 @@ int _printf(const char *format, ...)
 	va_start(vargs, format);
 
 	/* iterate format string up to the last non-null character */
+	if (format == NULL)
+		return (-1);
 	while (*format)
 	{
 		if (*format != '%')
@@ -137,6 +139,8 @@ int _printf(const char *format, ...)
 		{
 			/* move to the next char after % */
 			++format;
+			if (*format == '\0')
+				return (-1);
 			/* call function selector */
 			count += function_selector(vargs, *format);
 		}
