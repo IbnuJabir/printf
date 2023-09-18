@@ -24,6 +24,38 @@ int print_char(char c)
 {
 	return (write(1, &c, 1));
 }
+
+/**
+ * function_selector - matches format specifier with the handler function
+ * @args: va_list object with the variable arguments
+ * @f_selector: format specifier character after '%' in format string
+ * Return: length of the variable.
+ */
+int function_selector(va_list args, char f_selector)
+{
+	int count = 0;
+	char *s;
+
+	switch (f_selector)
+	{
+		case 'c':
+			print_char(va_arg(args, int));
+			break;
+		case 's':
+			s = va_arg(args, char *);
+			if (s != NULL)
+				count = print_str(s);
+			else
+				count = print_str("(nil)");
+			break;
+		default:
+			count = print_char('%');
+			count += print_char(f_selector);
+			break;
+	}
+	return (count);
+}
+
 /**
  * _printf - this is a custom printf function that writes characters on
  * the standard output
@@ -33,7 +65,6 @@ int print_char(char c)
 int _printf(const char *format, ...)
 {
 	int count = 0;
-	char *str = NULL;
 	va_list vargs;
 
 	va_start(vargs, format);
@@ -49,18 +80,8 @@ int _printf(const char *format, ...)
 		{
 			/* move to the next char after % */
 			++format;
-
-			/* check if character after % is c or s */
-			if (*format == 'c')
-			{
-				count += print_char(va_arg(vargs, int));
-			}
-			else if (*format == 's')
-			{
-				str = va_arg(vargs, char *);
-				printf("(%s)", str);
-				count += print_str(str);
-			}
+			/* call function selector */
+			count += function_selector(vargs, *format);
 		}
 
 	format++;
