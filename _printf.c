@@ -4,29 +4,30 @@
  * @s: string to encode
  * Return: string length
  */
-int rot13(char *s)
+int rot_13(char *str)
 {
-	char *alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	int i, temp = 0, count = 0;
+	int j, i = 0, count = 0;
+	char *alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char *rot13 = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	while (*s != '\0')
+	if (str == NULL)
+		return (-1);
+	else
 	{
-		for (i = 0; i < 26; i++)
+		while (str[i] != '\0')
 		{
-			if (*s == alpha[i])
+			for (j = 0; alpha[j] != '\0'; j++)
 			{
-				temp = i;
-				temp += 13;
-				if (temp > 25)
+				if (str[i] == alpha[j])
 				{
-					temp -= 26;
+					count += _putchar(rot13[j]);
+					break;
 				}
-				count += _putchar(alpha[temp]);
 			}
+			i++;
 		}
-		s++;
 	}
-	_putchar('\n');
+
 	return (count);
 }
 /**
