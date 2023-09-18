@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * rot13 - encrypts text using ROT13 cipher
- * @s: string to encode
+ * rot_13 - encrypts text using ROT13 cipher
+ * @str: string to encode
  * Return: string length
  */
 int rot_13(char *str)
@@ -12,7 +12,7 @@ int rot_13(char *str)
 
 	if (str == NULL)
 		return (-1);
-	else
+
 	{
 		while (str[i] != '\0')
 		{
