@@ -3,7 +3,7 @@
  * print_binary - Prints the binary representation of an unsigned integer.
  * @num: The unsigned integer to be printed.
  *
- * Returns: The number of characters printed
+ * Returns: The number of characters printed.
  */
 int print_binary(unsigned int num)
 {
