@@ -1,5 +1,35 @@
 #include "main.h"
 /**
+ * rot13 - encrypts text using ROT13 cipher
+ * @s: string to encode
+ * Return: string length
+ */
+int rot13(char *s)
+{
+	char *alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	int i, temp = 0, count = 0;
+
+	while (*s != '\0')
+	{
+		for (i = 0; i < 26; i++)
+		{
+			if (*s == alpha[i])
+			{
+				temp = i;
+				temp += 13;
+				if (temp > 25)
+				{
+					temp -= 26;
+				}
+				count += _putchar(alpha[temp]);
+			}
+		}
+		s++;
+	}
+	_putchar('\n');
+	return (count);
+}
+/**
  * print_number - prints signed and usigned numbers
  * @n: number
  * Return: number of characters in a number
@@ -70,6 +100,10 @@ int function_selector(va_list args, char f_selector)
 			break;
 		case '%':
 			count += _putchar('%');
+			break;
+		case 'R':
+			s = va_arg(args, char *);
+			count += rot13(s);
 			break;
 		default:
 			count += _putchar('%');
