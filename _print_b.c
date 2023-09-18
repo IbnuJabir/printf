@@ -8,11 +8,12 @@
 int print_binary(unsigned int num)
 {
 	int count = 0;
+	int i = 0;
 	int num_bits = sizeof(num) * 8;
 	unsigned int bit = 1U << (num_bits - 1);
 	int has_zeros = 1;
 
-	for (int i = 0; i < num_bits; i++)
+	for ( ; i < num_bits; i++)
 	{
 		if ((num & bit) != 0)
 		{
