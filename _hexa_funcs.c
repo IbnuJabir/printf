@@ -3,7 +3,6 @@
 /**
  * print_unsigned - Print an unsigned integer
  * @num: The unsigned integer to be printed
- *
  * Return: The number of characters printed
  */
 int print_unsign(unsigned int num)
@@ -16,7 +15,7 @@ int print_unsign(unsigned int num)
 
 	while (divisor != 0)
 	{
-		count += putchar('0' + (num / divisor));
+		count += _putchar('0' + (num / divisor));
 		num %= divisor;
 		divisor /= 10;
 	}
@@ -27,7 +26,6 @@ int print_unsign(unsigned int num)
 /**
  * print_octal - Print an octal number
  * @num: The unsigned integer to be printed as an octal number
- *
  * Return: The number of characters printed
  */
 int print_octal(unsigned int num)
@@ -44,7 +42,7 @@ int print_octal(unsigned int num)
 	}
 
 	for (j = i - 1; j >= 0; j--)
-		count += putchar('0' + octal_digits[j]);
+		count += _putchar('0' + octal_digits[j]);
 
 	return (count);
 }
@@ -53,7 +51,6 @@ int print_octal(unsigned int num)
  * print_hex - Print a hexadecimal number
  * @num: The unsigned integer to be printed as a hexadecimal number
  * @uppercase: Flag indicating whether uppercase (1) or lowercase (0)
- *
  * Return: The number of characters printed
  */
 int print_hex(unsigned int num, int uppercase)
@@ -82,7 +79,7 @@ int print_hex(unsigned int num, int uppercase)
 	}
 
 	for (j = i - 1; j >= 0; j--)
-		count += putchar(hex_representation[j]);
+		count += _putchar(hex_representation[j]);
 
 	return (count);
 }
