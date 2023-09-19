@@ -47,7 +47,7 @@ int print_str(char *str)
  * @f_selector: format specifier character after '%' in format string
  * Return: length of the variable.
  */
-int function_selector(va_list args, char f_selector)
+int function_selector(va_list args, const char f_selector)
 {
 	int count = 0;
 	unsigned int num;
