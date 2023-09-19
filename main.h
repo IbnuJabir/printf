@@ -10,6 +10,7 @@ int _putchar(char c);
 int rot_13(char *str);
 int print_number(int n);
 int print_str(char *str);
+int print_rev(char *str);
 
 int print_binary(unsigned int num);
 int print_unsign(unsigned int num);
