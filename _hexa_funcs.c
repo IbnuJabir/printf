@@ -35,6 +35,10 @@ int print_octal(unsigned int num)
 	int count = 0;
 	int j;
 
+	if (num == 0)
+	{
+		count = _putchar('0' + 0);
+	}
 	while (num != 0)
 	{
 		octal_digits[i++] = num % 8;
@@ -71,7 +75,8 @@ int print_hex(unsigned int num, int uppercase)
 		hex_digits[15] = 'F';
 	}
 
-
+	if (num == 0)
+		count += _putchar(0 + '0');
 	while (num != 0)
 	{
 		hex_representation[i++] = hex_digits[num % 16];
