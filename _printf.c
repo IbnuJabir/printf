@@ -12,7 +12,7 @@ int function_selector(va_list args, const char f_selector)
 	char *s;
 
 	if (f_selector == 'c')
-		count += _putchar(va_arg(args, int));
+		count += print_char(va_arg(args, int));
 	else if (f_selector == 's')
 	{
 		s = va_arg(args, char *);
