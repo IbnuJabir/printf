@@ -25,7 +25,7 @@ int handle_string(va_list args)
 	if (s != NULL)
 		return (print_str(s));
 	else
-		return (print_str("(nil)"));
+		return (print_str("null");
 }
 
 /**
@@ -66,9 +66,3 @@ int handle_bin(va_list args)
 
 	return (print_binary(decimal));
 }
-
-/**
- * handle_rot13 - Handles the 'R' format specifier.
- * @args: va_list object with the variable arguments.
- * Return: The number of characters printed.
- */
