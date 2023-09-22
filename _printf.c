@@ -2,46 +2,37 @@
 /**
  * function_selector - matches format specifier with the handler function
  * @args: va_list object with the variable arguments
- * @f_selector: format specifier character after '%' in format string
+ * @f_specifier: format specifier character after '%' in format string
  * Return: length of the variable.
  */
-int function_selector(va_list args, const char f_selector)
+int function_selector(va_list args, const char f_specifier)
 {
-	int count = 0;
-	unsigned int num;
-	char *s;
+f_select f[] = {
+		{'c', handle_char}, {'s', handle_string},
+		{'i', handle_number}, {'d', handle_number},
+		{'o', handle_octal}, {'b', handle_bin},
+		{'R', handle_rot13}, {'x', handle_hex_l},
+		{'X', handle_hex_u}, {'u', handle_unsign},
+		{'r', handle_rev}, {0, NULL}
+	};
+unsigned int i = 0;
+int count = 0;
+unsigned int size = sizeof(f) / sizeof(f_select) - 1;
 
-	if (f_selector == 'c')
-		count += print_char(va_arg(args, int));
-	else if (f_selector == 's')
+while (i < size)
+{
+	if (f_specifier == f[i].specifier)
 	{
-		s = va_arg(args, char *);
-		if (s != NULL)
-			count += print_str(s);
-		else
-			count += print_str("(nil)");
+		count += f[i].func(args);
+		break;
 	}
-	else if (f_selector == 'd' || f_selector == 'i')
-		count += print_number(va_arg(args, int));
-	else if (f_selector == 'u')
-		count += print_unsign(va_arg(args, unsigned int));
-	else if (f_selector == 'o')
-		count += print_octal(va_arg(args, unsigned int));
-	else if (f_selector == 'x' || f_selector == 'X')
+	i++;
+}
+	/* print default if format specifier is unknown */
+	if (i == size)
 	{
-		num = va_arg(args, unsigned int);
-		count += print_hex(num, (f_selector == 'X') ? 1 : 0);
-	}
-	else if (f_selector == '%')
-		count += _putchar('%');
-	else if (f_selector == 'R')
-		count += rot_13(va_arg(args, char *));
-	else if (f_selector == 'b')
-		count += print_binary(va_arg(args, unsigned int));
-	else
-	{
-		count += _putchar('%');
-		count += _putchar(f_selector);
+		count += print_char('%');
+		count += print_char(f_specifier);
 	}
 	return (count);
 }
@@ -73,12 +64,15 @@ int _printf(const char *format, ...)
 			++format;
 			if (*format == '\0')
 				return (-1);
-			/* call function selector */
-			count += function_selector(vargs, *format);
+			if (*format == '%')
+				count += _putchar('%');
+			else
+				/* call function selector */
+				count += function_selector(vargs, *format);
 		}
-
 	format++;
 	}
+
 	va_end(vargs);
 	return (count);
 }

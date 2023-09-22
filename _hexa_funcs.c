@@ -57,7 +57,7 @@ int print_octal(unsigned int num)
  * @uppercase: Flag indicating whether uppercase (1) or lowercase (0)
  * Return: The number of characters printed
  */
-int print_hex(unsigned int num, int uppercase)
+int print_hex_l(unsigned int num)
 {
 	int j;
 	int i = 0;
@@ -65,15 +65,32 @@ int print_hex(unsigned int num, int uppercase)
 	char hex_digits[] = "0123456789abcdef";
 	char hex_representation[32];
 
-	if (uppercase)
+	if (num == 0)
+		count += _putchar(0 + '0');
+	while (num != 0)
 	{
-		hex_digits[10] = 'A';
-		hex_digits[11] = 'B';
-		hex_digits[12] = 'C';
-		hex_digits[13] = 'D';
-		hex_digits[14] = 'E';
-		hex_digits[15] = 'F';
+		hex_representation[i++] = hex_digits[num % 16];
+		num /= 16;
 	}
+
+	for (j = i - 1; j >= 0; j--)
+		count += _putchar(hex_representation[j]);
+
+	return (count);
+}
+
+/**
+ * print_hex_u - Print a hexadecimal number in lowercase
+ * @num: The unsigned integer to be printed as a hexadecimal number
+ * Return: The number of characters printed
+ */
+int print_hex_u(unsigned int num)
+{
+	int j;
+	int i = 0;
+	int count = 0;
+	char hex_digits[] = "0123456789ABCDEF";
+	char hex_representation[32];
 
 	if (num == 0)
 		count += _putchar(0 + '0');
