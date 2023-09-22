@@ -45,5 +45,15 @@ int main(void)
     printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
     _printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
     _printf("%S\n", "Best\nSchool");
+    printf("\n");
+    _printf("%S", "No special character.");
+     printf("\n");
+    _printf("%S", "\n");
+     printf("\n");
+    _printf("%S", "\x01\x02\x03\x04\x05\x06\x07");
+     printf("\n");
+   _printf("Could you print some non-prntable characters?\n%S\nThanks!\n", "Sure:\x1F\x7F\n");
+    printf("\n");
+   _printf("- What did you say?\n- %S\n- That's what I thought.\n", "");
     return (0);
 }
