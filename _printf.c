@@ -13,7 +13,8 @@ f_select f[] = {
 		{'o', handle_octal}, {'b', handle_bin},
 		{'R', handle_rot13}, {'x', handle_hex_l},
 		{'X', handle_hex_u}, {'u', handle_unsign},
-		{'r', handle_rev}, {0, NULL}
+		{'r', handle_rev}, {'S', handle_custom_str},
+		{0, NULL}
 	};
 unsigned int i = 0;
 int count = 0;

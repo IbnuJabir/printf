@@ -44,5 +44,6 @@ int main(void)
     _printf("%b\n", 98);
     printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
     _printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+    _printf("%S\n", "Best\nSchool");
     return (0);
 }

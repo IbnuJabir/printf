@@ -28,7 +28,9 @@ int print_unsign(unsigned int num);
 int print_octal(unsigned int num);
 int print_hex_l(unsigned int num);
 int print_hex_u(unsigned int num);
+int print_custom_string(char *str);
 void print_zero_padded(int value, int width);
+
 
 int handle_char(va_list args);
 int handle_string(va_list args);
@@ -40,6 +42,6 @@ int handle_hex_l(va_list args);
 int handle_hex_u(va_list args);
 int handle_rev(va_list args);
 int handle_bin(va_list args);
-void handle_zero_flag(va_list args, char specifier);
+int handle_custom_str(va_list args);
 
 #endif
