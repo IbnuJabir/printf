@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdio.h>
-#include "main.h"
+#include "../main.h"
 
 /**
  * main - Entry point
@@ -42,5 +42,7 @@ int main(void)
     _printf("Unknown:[%r]\n");
     _printf("%R\n", "DoG");
     _printf("%b\n", 98);
+    printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+    _printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
     return (0);
 }

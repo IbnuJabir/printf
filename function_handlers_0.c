@@ -25,7 +25,7 @@ int handle_string(va_list args)
 	if (s != NULL)
 		return (print_str(s));
 	else
-		return (print_str("null"));
+		return (print_str("(null)"));
 }
 
 /**
