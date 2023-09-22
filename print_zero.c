@@ -1,7 +1,6 @@
 #include "main.h"
 /**
- * Print zero-padded value.
- *
+ * print_zero_padded - prints number with a zero padding
  * @value: Value to be printed.
  * @width: Padding width.
  */
@@ -28,6 +27,7 @@ void print_zero_padded(int value, int width)
 	while (divisor != 0)
 	{
 		int digit = value / divisor;
+
 		_putchar('0' + digit);
 		value %= divisor;
 		divisor /= 10;
